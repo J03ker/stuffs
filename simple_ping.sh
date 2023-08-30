@@ -17,10 +17,10 @@ ctrl_c() {
 # Trap Ctrl+C and call the ctrl_c function
 trap ctrl_c INT
 
-
-
+# Ask the user for the subnet to be scanned
 read -e -p "Please enter the first 3 octets: " subnet
 
+# This simple for loop will ping through host addresses 1-254, it sends all output (std and error to /dev/null) and if ran successfully reports a message to the user
 for host in {1..254}; do
         ip_address="$subnet.$host"
         ping -c 1 -W 1 "$ip_address" &>/dev/null
